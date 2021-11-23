@@ -2,14 +2,14 @@ version: '3.3'
 
 services:
   app:
-    image: php:8.0.2-fpm
+    build:
+      context: ./php
+      dockerfile: Dockerfile
     restart: always
     working_dir: /var/www/
     volumes:
       - ../src:/var/www
       - ./php/php.ini:/usr/local/etc/php/conf.d/upload.ini
-    depends_on:
-      - nginx
   nginx:
     image: nginx:1.19-alpine
     restart: always
